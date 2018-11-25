@@ -1,0 +1,128 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  font-weight: inherit; 
+}
+article, aside, details, figcaption, figure,
+footer, hgroup, menu, nav {
+  display: block; }
+* { -webkit-tap-highlight-color: transparent; }
+body {
+  line-height: 1;
+  color: white;
+  font-family: "Playfair Display"; 
+  background-color: #000;
+}
+ol, ul {
+  list-style: none; 
+}
+blockquote, q {
+  quotes: none; 
+}
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; 
+}
+q:before, q:after {
+  content: '';
+  content: none; 
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0; 
+}
+img {
+  border: none; 
+}
+p {
+  font-size: 1em; 
+}
+section {
+  width: 100%;
+  padding: 0;
+  margin: 0; 
+}
+input {
+  background-color: white;
+  color: #000;
+  outline: 0px;
+  background: none; 
+}
+a {
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+  color: white;
+  text-decoration: none; 
+}
+a:hover {
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+  color: white; 
+}
+.container {
+  padding: 10px;
+}
+.content {
+  display: flex;
+  justify-content: space-around;
+}
+
+#bullets ul {
+  display: flex;
+}
+
+#bullets ul li {
+  margin-right: 10px;
+}
+
+#bullets ul li img {
+  width: 15px;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+h1 {
+  margin: 10px 0 100px 0;
+  font-family: 'Bangers', cursive;
+  font-size: 5em;
+  color: red;
+  letter-spacing: 0.05em;
+  transform: rotate(-5deg);
+}
+
+h2 {
+  display: flex;
+  flex-direction: column;
+  font-size: 3em;
+}
+
+h2 span {
+  text-align: center;
+  font-size: 5em;
+}
