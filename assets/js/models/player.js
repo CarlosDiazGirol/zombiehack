@@ -10,6 +10,8 @@ function Player(ctx) {
     this.x = this.ctx.canvas.width / 2;
     this.y = this.ctx.canvas.height / 2;
 
+    this.traslate = this.ctx.translate(90, 30);
+
     this.vx = 0;
     this.vy = 0;
 
@@ -22,7 +24,7 @@ Player.prototype.draw = function() {
     this.x,
     this.y,
     this.w,
-    this.h
+    this.h,
   );
 };
   
@@ -69,4 +71,23 @@ Player.prototype.onKeyUp = function(event) {
 Player.prototype.setListeners = function() {
   document.addEventListener('keydown', this.onKeyDown.bind(this));
   document.addEventListener("keyup", this.onKeyUp.bind(this));
+
+  document.getElementById('biohazard').addEventListener("mousemove", function(event) {
+    Player.prototype.mouseCoordinates(event);
+  });
 };
+
+Player.prototype.mouseCoordinates = function(e) {
+  var x = e.clientX;
+  var y = e.clientY;
+  var coor = "Coordinates: (" + x + "," + y + ")";
+  console.log(coor);
+}
+
+// Player.prototype.deleteBullet = function() {
+//   var bullet = document.querySelectorAll('bullets ul li');
+//   var bullets = [];
+//   for(var i = 0; bullet.lenght < i; i++) {
+//     if (i === )
+//   }
+// };
