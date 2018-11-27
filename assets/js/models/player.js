@@ -4,40 +4,52 @@ function Player(ctx) {
     this.img = new Image();
     this.img.src = "assets/img/player.png";
   
-    this.w = 44;
-    this.h = 82;
-  
     this.x = this.ctx.canvas.width / 2;
     this.y = this.ctx.canvas.height / 2;
 
-    this.traslate = this.ctx.translate(90, 30);
+    this.mouse_x = 0;
+    this.mouse_y = 0;
 
     this.vx = 0;
     this.vy = 0;
 
-    this.setListeners();
+    this.speed = 1.5;
+    this.angle = 0;
+
+    this.pushed_keys = {};
   }
+
+Player.prototype.getPlayerAngle = function() {
+  var delta_x = this.mouse_x - this.x;
+  var delta_y = this.mouse_y - this.y;
+  var angle   = Math.atan2(delta_y, delta_x);
+  return angle;
+}
+
+Player.prototype.checkKeys = function() {
+  if ( (this.pushed_keys[KEY_UP]    || this.pushed_keys[KEY_W] ) && this.y > (0 + this.speed)                      ) this.y -= this.speed;
+  if ( (this.pushed_keys[KEY_DOWN]  || this.pushed_keys[KEY_S] ) && this.y < (this.ctx.canvas.height - this.speed) ) this.y += this.speed;
+  if ( (this.pushed_keys[KEY_LEFT]  || this.pushed_keys[KEY_A] ) && this.x > (0 + this.speed)                      ) this.x -= this.speed;
+  if ( (this.pushed_keys[KEY_RIGHT] || this.pushed_keys[KEY_D] ) && this.x < (this.ctx.canvas.width - this.speed)  ) this.x += this.speed;
+}
    
 Player.prototype.draw = function() {
+  // this.ctx.save();
+  // this.ctx.translate(this.x, this.y);
+  // this.ctx.rotate(this.angle + (Math.PI/2)); // rotate
   this.ctx.drawImage(
     this.img,
     this.x,
     this.y,
-    this.w,
-    this.h,
+    -this.img.width/2,
+    -this.img.height/2
   );
+  // this.ctx.restore();
 };
   
+  
 Player.prototype.move = function() {
-
-  this.x += this.vx;
-  this.y += this.vy;
-  if (this.x > this.ctx.canvas.width - this.w || this.x <= 0 ){
-    this.vx = 0;
-  };
-  if (this.y > this.ctx.canvas.height - this.h || this.y <= 0 ){
-    this.vy = 0;
-  };
+  this.checkKeys();
 };
 
 
