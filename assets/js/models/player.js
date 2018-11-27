@@ -34,17 +34,15 @@ Player.prototype.checkKeys = function() {
 }
    
 Player.prototype.draw = function() {
-  // this.ctx.save();
-  // this.ctx.translate(this.x, this.y);
-  // this.ctx.rotate(this.angle + (Math.PI/2)); // rotate
+  this.ctx.save();
+  this.ctx.translate(this.x, this.y);
+  this.ctx.rotate(this.angle + (Math.PI/2)); // rotate
   this.ctx.drawImage(
     this.img,
-    this.x,
-    this.y,
     -this.img.width/2,
     -this.img.height/2
   );
-  // this.ctx.restore();
+  this.ctx.restore();
 };
   
   
@@ -58,48 +56,31 @@ Player.prototype.animate = function() {
 
 };
   
-Player.prototype.onKeyDown = function(e) {
-  switch (e.keyCode) {
-    case KEY_RIGHT:
-      this.vx = 3;
+Player.prototype.inputHandler = function(e) {
+  var key       = e.keyCode;
+  var eventType = e.type; // keyup, keydown o mousemove
+
+  switch (eventType) {
+    case 'keydown': 
+      this.pushed_keys[ key ] = true;
       break;
-    case KEY_LEFT:
-      this.vx = -3;
-      break;
-    case KEY_UP:
-      this.vy = -3;
-      break;
-    case KEY_DOWN:
-      this.vy = 3;
+    case 'keyup':
+      this.pushed_keys[ key ] = false;
+      break;    
+    case 'mousemove':
+      this.mouse_x = e.clientX;
+      this.mouse_y = e.clientY;
       break;
   }
-};
-
-Player.prototype.onKeyUp = function(event) {
-  this.vx = 0;
-  this.vy = 0;
-};
-
-Player.prototype.setListeners = function() {
-  document.addEventListener('keydown', this.onKeyDown.bind(this));
-  document.addEventListener("keyup", this.onKeyUp.bind(this));
-
-  document.getElementById('biohazard').addEventListener("mousemove", function(event) {
-    Player.prototype.mouseCoordinates(event);
-  });
-};
-
-Player.prototype.mouseCoordinates = function(e) {
-  var x = e.clientX;
-  var y = e.clientY;
-  var coor = "Coordinates: (" + x + "," + y + ")";
-  console.log(coor);
 }
 
-// Player.prototype.deleteBullet = function() {
-//   var bullet = document.querySelectorAll('bullets ul li');
-//   var bullets = [];
-//   for(var i = 0; bullet.lenght < i; i++) {
-//     if (i === )
-//   }
-// };
+
+Player.prototype.setListeners = function() {
+  this.ctx.canvas.addEventListener('mousemove', inputHandler, false);
+  document.addEventListener('keydown', inputHandler, false);
+  document.addEventListener('keyup',   inputHandler, false);
+};
+
+
+setListeners();
+getPlayerAngle();
