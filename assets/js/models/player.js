@@ -17,13 +17,15 @@ function Player(ctx) {
     this.angle = 0;
 
     this.pushed_keys = {};
+
+    this.setListeners();
   }
 
-Player.prototype.getPlayerAngle = function() {
-  var delta_x = this.mouse_x - this.x;
-  var delta_y = this.mouse_y - this.y;
-  var angle   = Math.atan2(delta_y, delta_x);
-  return angle;
+Player.prototype.updatePlayerAngle = function() {
+  var canvasPosition = this.ctx.canvas.getBoundingClientRect();
+  var delta_x = (this.mouse_x - canvasPosition.left)  - this.x;
+  var delta_y = (this.mouse_y - canvasPosition.top) - this.y;
+  this.angle = Math.atan2(delta_y, delta_x);
 }
 
 Player.prototype.checkKeys = function() {
@@ -48,6 +50,7 @@ Player.prototype.draw = function() {
   
 Player.prototype.move = function() {
   this.checkKeys();
+  this.updatePlayerAngle();
 };
 
 
@@ -76,11 +79,7 @@ Player.prototype.inputHandler = function(e) {
 
 
 Player.prototype.setListeners = function() {
-  this.ctx.canvas.addEventListener('mousemove', inputHandler, false);
-  document.addEventListener('keydown', inputHandler, false);
-  document.addEventListener('keyup',   inputHandler, false);
+  document.addEventListener('mousemove', this.inputHandler.bind(this), false);
+  document.addEventListener('keydown',   this.inputHandler.bind(this), false);
+  document.addEventListener('keyup',     this.inputHandler.bind(this), false);
 };
-
-
-setListeners();
-getPlayerAngle();
