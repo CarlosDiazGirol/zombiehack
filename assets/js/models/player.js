@@ -58,6 +58,11 @@ Player.prototype.animate = function() {
 
 
 };
+
+Player.prototype.deleteBullet = function() {
+  var bullets = document.querySelector('#bullets ul li');
+  bullets.parentNode.removeChild(bullets);
+}
   
 Player.prototype.inputHandler = function(e) {
   var key       = e.keyCode;
@@ -74,12 +79,16 @@ Player.prototype.inputHandler = function(e) {
       this.mouse_x = e.clientX;
       this.mouse_y = e.clientY;
       break;
+      case 'click':
+      this.deleteBullet();
+      break;
   }
 }
 
 
 Player.prototype.setListeners = function() {
   document.addEventListener('mousemove', this.inputHandler.bind(this), false);
+  document.addEventListener('click',     this.inputHandler.bind(this), false);
   document.addEventListener('keydown',   this.inputHandler.bind(this), false);
   document.addEventListener('keyup',     this.inputHandler.bind(this), false);
 };
