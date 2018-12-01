@@ -9,11 +9,13 @@ function Zombie(ctx) {
     this.w = 66;
     this.h = 91;
 
-    this.x = 200;
-    this.y = 200;
+    this.x = 300;
+    this.y = 300;
   
-    this.vx = -0.3;
+    this.vx = 0.3;
     this.vy = -0.3;
+
+    this.enemies = []
 
     this.drawCount = 0;
   }
@@ -48,3 +50,9 @@ Zombie.prototype.animate = function() {
     this.img.frameIndex = 0;
   }
 };
+
+Zombie.prototype.createEnemy = function() {
+  this.x = Math.round((Math.random() * this.ctx.canvas.width));
+  this.y = Math.round((Math.random() * this.ctx.canvas.height));
+  enemies.push(draw(this.x, this.y));
+}

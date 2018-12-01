@@ -6,11 +6,18 @@ function Game(canvasElement) {
     this.player = new Player(this.ctx);
     this.zombie = new Zombie(this.ctx);
     this.top = new Top(this.ctx);
+    this.items = [];
+    this.drawCounter = 0;
   }
   
   Game.prototype.start = function() {
     this.intervalId = setInterval(function() {
       this.clear();
+      this.drawCounter++;
+      if (this.drawCounter % 200 === 0) { // draw bullets
+       this.drawCounter = 0;
+       this.items.push(new Item(this.ctx))
+      }
       this.drawAll();
       this.checkGameOver();
       this.moveAll();
@@ -19,6 +26,9 @@ function Game(canvasElement) {
   
   Game.prototype.drawAll = function(action) {
     this.background.draw();
+    this.items.forEach(function(item){
+      item.draw();
+    })
     this.player.draw();
     this.zombie.draw();
     this.top.draw();

@@ -1,25 +1,24 @@
 function Player(ctx) {
-    this.ctx = ctx;
+  this.ctx = ctx;
 
-    this.img = new Image();
-    this.img.src = "assets/img/player.png";
-  
-    this.x = this.ctx.canvas.width / 2;
-    this.y = this.ctx.canvas.height / 2;
+  this.img = new Image();
+  this.img.src = "assets/img/player.png";
 
-    this.mouse_x = 0;
-    this.mouse_y = 0;
+  this.x = this.ctx.canvas.width / 2;
+  this.y = this.ctx.canvas.height / 2;
 
-    this.vx = 0;
-    this.vy = 0;
+  this.mouse_x = 0;
+  this.mouse_y = 0;
 
-    this.speed = 1.5;
-    this.angle = 0;
+  this.speed = 1.5;
+  this.angle = 0;
 
-    this.pushed_keys = {};
+  this.pushed_keys = {};
 
-    this.setListeners();
-  }
+  this.bullets = [];
+
+  this.setListeners();
+}
 
 Player.prototype.updatePlayerAngle = function() {
   var canvasPosition = this.ctx.canvas.getBoundingClientRect();
@@ -45,12 +44,19 @@ Player.prototype.draw = function() {
     -this.img.height/2
   );
   this.ctx.restore();
+  // console.log(this.bullets)
+  this.bullets.forEach(function(bullet){
+    bullet.draw();
+  })
 };
   
   
 Player.prototype.move = function() {
   this.checkKeys();
   this.updatePlayerAngle();
+  this.bullets.forEach(function(bullet){
+    bullet.update();
+  })
 };
 
 
@@ -60,8 +66,15 @@ Player.prototype.animate = function() {
 };
 
 Player.prototype.deleteBullet = function() {
-  var bullets = document.querySelector('#bullets ul li');
-  bullets.parentNode.removeChild(bullets);
+  // var bullets = document.querySelector('#bullets ul li');
+  // bullets.parentNode.removeChild(bullets);
+}
+
+Player.prototype.fire = function(e) {
+  var delta_x = Math.cos(this.angle);
+  var delta_y = Math.sin(this.angle);
+  var bullet = new Bullet(this.ctx, this.x, this.y, delta_x, delta_y);
+  this.bullets.push(bullet);
 }
   
 Player.prototype.inputHandler = function(e) {
@@ -81,6 +94,7 @@ Player.prototype.inputHandler = function(e) {
       break;
       case 'click':
       this.deleteBullet();
+      this.fire(e);
       break;
   }
 }
