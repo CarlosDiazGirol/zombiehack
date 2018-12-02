@@ -136,3 +136,7 @@ h2 span {
   font-size: 5em;
 
 }
+
+canvas {
+cursor: url(../img/target.png), auto;
+}

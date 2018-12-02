@@ -54,6 +54,7 @@ Player.prototype.draw = function() {
 Player.prototype.move = function() {
   this.checkKeys();
   this.updatePlayerAngle();
+  // this.colision();
   this.bullets.forEach(function(bullet){
     bullet.update();
   })
@@ -66,8 +67,8 @@ Player.prototype.animate = function() {
 };
 
 Player.prototype.deleteBullet = function() {
-  // var bullets = document.querySelector('#bullets ul li');
-  // bullets.parentNode.removeChild(bullets);
+  var bullets = document.querySelector('#bullets ul li');
+  bullets.parentNode.removeChild(bullets);   
 }
 
 Player.prototype.fire = function(e) {
@@ -106,3 +107,17 @@ Player.prototype.setListeners = function() {
   document.addEventListener('keydown',   this.inputHandler.bind(this), false);
   document.addEventListener('keyup',     this.inputHandler.bind(this), false);
 };
+
+
+// Player.prototype.colision = function() {
+//   this.zombie = new Zombie(this.ctx);
+//   if (
+//     this.x < this.zombie.x + this.zombie.w && 
+//     this.x + this.w > this.zombie.x && 
+//     this.y < this.w + this.zombie.h && 
+//     this.h + this.y > this.zombie.y
+//     ) {
+//       alert('wow');
+//   }
+// }
+

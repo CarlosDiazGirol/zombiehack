@@ -9,8 +9,8 @@ function Zombie(ctx) {
     this.w = 66;
     this.h = 91;
 
-    this.x = 300;
-    this.y = 300;
+    this.x = Math.random() * ((this.ctx.canvas.width -20) - 20) + 20;
+    this.y = Math.random() * ((this.ctx.canvas.height -20) - 20) + 20;
   
     this.vx = 0.3;
     this.vy = -0.3;
@@ -18,11 +18,10 @@ function Zombie(ctx) {
     this.enemies = []
 
     this.drawCount = 0;
-  }
-   
+}
+
 Zombie.prototype.draw = function() {
   this.drawCount++;
-
   this.ctx.drawImage(
     this.img,
     this.img.width * this.img.frameIndex / this.img.frames, 0,
@@ -42,6 +41,7 @@ Zombie.prototype.draw = function() {
 Zombie.prototype.move = function() {
 this.x += this.vx;
 this.y += this.vy;
+// this.colision();
 };
 
 Zombie.prototype.animate = function() {
@@ -51,8 +51,14 @@ Zombie.prototype.animate = function() {
   }
 };
 
-Zombie.prototype.createEnemy = function() {
-  this.x = Math.round((Math.random() * this.ctx.canvas.width));
-  this.y = Math.round((Math.random() * this.ctx.canvas.height));
-  enemies.push(draw(this.x, this.y));
-}
+// Zombie.prototype.colision = function() {
+//   this.player = new Player(this.ctx);
+//   if (
+//     this.x < this.player.x + this.player.w && 
+//     this.x + this.w > this.player.x && 
+//     this.y < this.w + this.player.h && 
+//     this.h + this.y > this.player.y
+//     ) {
+//       alert('wow');
+//   }
+// }

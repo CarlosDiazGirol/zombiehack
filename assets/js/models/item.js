@@ -9,8 +9,6 @@ function Item(ctx) {
 
     this.x = Math.random() * ((this.ctx.canvas.width -20) - 20) + 20;
     this.y = Math.random() * ((this.ctx.canvas.height -20) - 20) + 20;
-
-    
 }
    
 Item.prototype.draw = function() {

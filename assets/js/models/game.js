@@ -3,10 +3,11 @@ function Game(canvasElement) {
   
     this.intervalId = undefined;
     this.background = new Background(this.ctx);
-    this.player = new Player(this.ctx);
     this.zombie = new Zombie(this.ctx);
+    this.player = new Player(this.ctx);
     this.top = new Top(this.ctx);
     this.items = [];
+    this.zombies = [];
     this.drawCounter = 0;
   }
   
@@ -14,10 +15,12 @@ function Game(canvasElement) {
     this.intervalId = setInterval(function() {
       this.clear();
       this.drawCounter++;
-      if (this.drawCounter % 200 === 0) { // draw bullets
-       this.drawCounter = 0;
+      if (this.drawCounter % 500 === 0) { // draw bullets
        this.items.push(new Item(this.ctx))
       }
+      if (this.drawCounter % 200 === 0) { // draw zombies
+        this.zombies.push(new Zombie(this.ctx))
+       }
       this.drawAll();
       this.checkGameOver();
       this.moveAll();
@@ -29,8 +32,10 @@ function Game(canvasElement) {
     this.items.forEach(function(item){
       item.draw();
     })
+    this.zombies.forEach(function(zombie){
+      zombie.draw();
+    })
     this.player.draw();
-    this.zombie.draw();
     this.top.draw();
   };
   
