@@ -138,5 +138,5 @@ h2 span {
 }
 
 canvas {
-cursor: url(../img/target.png), auto;
+cursor: url(../img/target.png) 22 22, pointer;
 }

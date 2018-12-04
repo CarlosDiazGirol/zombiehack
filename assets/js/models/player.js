@@ -7,14 +7,18 @@ function Player(ctx) {
   this.x = this.ctx.canvas.width / 2;
   this.y = this.ctx.canvas.height / 2;
 
+  this.w = 44;
+  this.h = 82;
+
   this.mouse_x = 0;
   this.mouse_y = 0;
 
-  this.speed = 1.5;
+  this.speed = PLAYER_SPEED;
   this.angle = 0;
 
   this.pushed_keys = {};
 
+  this.ammo = 5;
   this.bullets = [];
 
   this.setListeners();
@@ -44,7 +48,6 @@ Player.prototype.draw = function() {
     -this.img.height/2
   );
   this.ctx.restore();
-  // console.log(this.bullets)
   this.bullets.forEach(function(bullet){
     bullet.draw();
   })
@@ -54,28 +57,26 @@ Player.prototype.draw = function() {
 Player.prototype.move = function() {
   this.checkKeys();
   this.updatePlayerAngle();
-  // this.colision();
   this.bullets.forEach(function(bullet){
     bullet.update();
   })
 };
 
-
-Player.prototype.animate = function() {
-
-
-};
-
 Player.prototype.deleteBullet = function() {
-  var bullets = document.querySelector('#bullets ul li');
-  bullets.parentNode.removeChild(bullets);   
+  if (this.ammo > 0) {
+    var bullets = document.querySelector('#bullets ul li');
+    bullets.parentNode.removeChild(bullets); 
+  }
 }
 
 Player.prototype.fire = function(e) {
-  var delta_x = Math.cos(this.angle);
-  var delta_y = Math.sin(this.angle);
-  var bullet = new Bullet(this.ctx, this.x, this.y, delta_x, delta_y);
-  this.bullets.push(bullet);
+  if (this.ammo > 0) {
+    var delta_x = Math.cos(this.angle);
+    var delta_y = Math.sin(this.angle);
+    var bullet = new Bullet(this.ctx, this.x, this.y, delta_x, delta_y);
+    this.bullets.push(bullet);
+    this.ammo--; 
+  }
 }
   
 Player.prototype.inputHandler = function(e) {
@@ -100,24 +101,10 @@ Player.prototype.inputHandler = function(e) {
   }
 }
 
-
 Player.prototype.setListeners = function() {
   document.addEventListener('mousemove', this.inputHandler.bind(this), false);
   document.addEventListener('click',     this.inputHandler.bind(this), false);
   document.addEventListener('keydown',   this.inputHandler.bind(this), false);
   document.addEventListener('keyup',     this.inputHandler.bind(this), false);
 };
-
-
-// Player.prototype.colision = function() {
-//   this.zombie = new Zombie(this.ctx);
-//   if (
-//     this.x < this.zombie.x + this.zombie.w && 
-//     this.x + this.w > this.zombie.x && 
-//     this.y < this.w + this.zombie.h && 
-//     this.h + this.y > this.zombie.y
-//     ) {
-//       alert('wow');
-//   }
-// }
 

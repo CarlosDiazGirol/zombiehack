@@ -21,3 +21,14 @@ Item.prototype.draw = function() {
     )
 };
 
+Item.prototype.colision = function(player) {
+    var a = player.x - this.x;
+    var b = player.y - this.y;
+    var distance = Math.sqrt( a*a + b*b );
+    if (distance < CONTACT_DISTANCE) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
