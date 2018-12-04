@@ -31,8 +31,8 @@ Game.prototype.start = function() {
     this.player.bullets.forEach(function(bullet){
       this.zombies.forEach(function(zombie) {
         if (bullet.colision(zombie)) {
-          var bulletIndex = this.items.indexOf(bullet);
-          var zombieIndex = this.items.indexOf(zombie);
+          var bulletIndex = this.player.bullets.indexOf(bullet);
+          var zombieIndex = this.zombies.indexOf(zombie);
           this.player.bullets.splice(bulletIndex, 1);
           this.zombies.splice(zombieIndex, 1);
         }
