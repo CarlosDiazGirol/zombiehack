@@ -94,7 +94,7 @@ Player.prototype.inputHandler = function(e) {
       this.mouse_x = e.clientX;
       this.mouse_y = e.clientY;
       break;
-      case 'click':
+    case 'click':
       this.deleteBullet();
       this.fire(e);
       break;

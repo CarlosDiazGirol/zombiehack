@@ -34,17 +34,17 @@ this.angle = Math.atan2(delta_y, delta_x);
 }
 
 Zombie.prototype.draw = function() {
-this.animationCount++;
-if (this.animationCount % 2 == 0) this.frameIndex++;
-if (this.frameIndex >= this.animation.length) this.frameIndex = 0;
-this.ctx.save();
-this.ctx.translate(this.x, this.y);
-this.ctx.rotate(this.angle );
-this.ctx.drawImage(
-  this.animation[this.frameIndex],
-  -this.animation[this.frameIndex].width/2,
-  -this.animation[this.frameIndex].height/2
-);
+  this.animationCount++;
+  if (this.animationCount % 2 == 0) this.frameIndex++;
+  if (this.frameIndex >= this.animation.length) this.frameIndex = 0;
+  this.ctx.save();
+  this.ctx.translate(this.x, this.y);
+  this.ctx.rotate(this.angle );
+  this.ctx.drawImage(
+    this.animation[this.frameIndex],
+    -this.animation[this.frameIndex].width/2,
+    -this.animation[this.frameIndex].height/2
+  );
 this.ctx.restore();
 
 // Dibuja un circulo alrededor del zombie
@@ -55,15 +55,15 @@ this.ctx.restore();
 };
 
 Zombie.prototype.move = function() {
-this.y += Math.sin( this.angle ) * this.speed ;
-this.x += Math.cos( this.angle ) * this.speed;
+  this.y += Math.sin( this.angle ) * this.speed;
+  this.x += Math.cos( this.angle ) * this.speed;
 };
 
 Zombie.prototype.animate = function() {
-this.img.frameIndex++;
-if (this.img.frameIndex === this.img.frames) {
-  this.img.frameIndex = 0;
-}
+  this.img.frameIndex++;
+  if (this.img.frameIndex === this.img.frames) {
+    this.img.frameIndex = 0;
+  }
 };
 
 Zombie.prototype.colision = function(player) {

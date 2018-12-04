@@ -8,9 +8,24 @@ function Game(canvasElement) {
   this.items = [];
   this.zombies = [];
   this.drawCounter = 0;
+  this.score = document.querySelector('#stuff h2 span');
+}
+
+Game.prototype.setScore = function(score) {
+  this.score.textContent = score;
+}
+
+Game.prototype.getScore = function() {
+  return parseInt(this.score.textContent);
+}
+
+Game.prototype.incScore = function() {
+  var score = this.getScore();
+  this.setScore(score + 1);
 }
 
 Game.prototype.start = function() {
+  this.setScore(0);
   this.intervalId = setInterval(function() {
     this.clear();
     this.drawCounter++;
@@ -35,6 +50,7 @@ Game.prototype.start = function() {
           var zombieIndex = this.zombies.indexOf(zombie);
           this.player.bullets.splice(bulletIndex, 1);
           this.zombies.splice(zombieIndex, 1);
+          this.incScore();
         }
       }.bind(this))
     }.bind(this));
