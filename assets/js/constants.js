@@ -9,7 +9,7 @@ var KEY_A         = 65;
 var KEY_S         = 83;
 var KEY_D         = 68;
 
-var MAX_ZOMBIES   = 6;
+var MAX_ZOMBIES   = 7;
 var MAX_BULLETS   = 2;
 
 var CONTACT_DISTANCE = 30;

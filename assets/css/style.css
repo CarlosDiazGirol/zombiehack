@@ -137,6 +137,75 @@ h2 span {
 
 }
 
+#startFloat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 999;
+}
+#startFloat p {
+  margin: 100px 0;
+  font-family: 'Bangers', cursive;
+  font-size: 12em;
+  color: red;
+  letter-spacing: 0.05em;
+  transform: rotate(-5deg);
+}
+
+#startFloat button {
+  padding: 20px 60px;
+  background-color: #ff1d00;
+  color: #fff;
+  fill: #fff;
+  font-size: 3em;
+  border-radius: 20px;
+  border: 5px solid white;
+  cursor: pointer;
+}
+
+#deadFloat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 999;
+}
+#deadFloat p {
+  margin: 100px 0;
+  font-family: 'Bangers', cursive;
+  font-size: 12em;
+  color: red;
+  letter-spacing: 0.05em;
+  transform: rotate(-5deg);
+}
+
+#deadFloat button {
+  padding: 20px 60px;
+  background-color: #ff1d00;
+  color: #fff;
+  fill: #fff;
+  font-size: 3em;
+  border-radius: 20px;
+  border: 5px solid white;
+  cursor: pointer;
+}
+
+#deadFloat input {
+  padding: 20px 60px;
+  color: #fff;
+}
+
 canvas {
 cursor: url(../img/target.png) 22 22, pointer;
 }

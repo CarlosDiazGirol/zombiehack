@@ -30,12 +30,13 @@ Game.prototype.start = function() {
     this.clear();
     this.drawCounter++;
     if (this.drawCounter % 500 === 0 && this.items.length < MAX_BULLETS) { // draw bullets
-      console.log('entra')
+    console.log('entra')
      this.items.push(new Item(this.ctx))
     }
     if (this.drawCounter % 200 === 0 && this.zombies.length < MAX_ZOMBIES) { // draw zombies
       this.zombies.push(new Zombie(this.ctx))
     }
+
 
     this.zombies.forEach(function(zombie){
       if (zombie.colision(this.player)) {
@@ -98,11 +99,17 @@ Game.prototype.checkGameOver = function() {
 
 Game.prototype.gameOver = function() {
   clearInterval(this.intervalId);
+  this.restart(this.start);
 
-  if (confirm("GAME OVER! Play again?")) {
-    location.reload();
-  }
 };
+
+Game.prototype.restart = function() {
+  $("#deadFloat").css('display','flex');
+  $("#restart").click(function() {
+    $("#deadFloat").hide();
+    location.reload();
+  });
+}
 
 Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
