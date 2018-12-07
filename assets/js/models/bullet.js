@@ -14,7 +14,7 @@ function Bullet(ctx, x, y, dx, dy) {
 Bullet.prototype.draw = function() {
   this.ctx.beginPath();
   this.ctx.fillStyle = "#da9517";
-  this.ctx.arc(this.x, this.y, 5, 0, 2 * Math.PI, false);
+  this.ctx.arc(this.x, this.y , 5, 0, 2 * Math.PI, false);
   this.ctx.fill();
   this.ctx.closePath();
 };

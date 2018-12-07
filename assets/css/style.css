@@ -148,6 +148,11 @@ h2 span {
   height: 100%;
   background: #000;
   z-index: 999;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -ms-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
 }
 #startFloat p {
   margin: 100px 0;
@@ -171,15 +176,20 @@ h2 span {
 
 #deadFloat {
   position: absolute;
-  top: 0;
+  top: -100%;
   left: 0;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
   background: #000;
   z-index: 999;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -ms-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
 }
 #deadFloat p {
   margin: 100px 0;
@@ -204,6 +214,34 @@ h2 span {
 #deadFloat input {
   padding: 20px 60px;
   color: #fff;
+}
+
+#blood {
+  position: absolute;
+  top: -130%;
+  left: 0;
+  z-index: 9999;
+  -webkit-transition: all 0.8s linear;
+  -moz-transition: all 0.8s linear;
+  -ms-transition: all 0.8s linear;
+  -o-transition: all 0.8s linear;
+  transition: all 0.8s linear;
+}
+
+#bloodhand {
+  position: fixed;
+  bottom: -110%;
+  right: 20px;
+  z-index: 9999;
+  -webkit-transition: all 1s linear;
+  -moz-transition: all 1s linear;
+  -ms-transition: all 1s linear;
+  -o-transition: all 1s linear;
+  transition: all 1s linear;
+}
+
+#bloodhand img {
+  width: 300px;
 }
 
 canvas {

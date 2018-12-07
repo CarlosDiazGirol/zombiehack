@@ -99,17 +99,14 @@ Game.prototype.checkGameOver = function() {
 
 Game.prototype.gameOver = function() {
   clearInterval(this.intervalId);
-  this.restart(this.start);
-
-};
-
-Game.prototype.restart = function() {
-  $("#deadFloat").css('display','flex');
+  $("#deadFloat").css({'display': 'flex','top': '0'});
+  $("#blood").css({'top': '0'});
+  $("#bloodhand").css({'bottom': '5%'});
   $("#restart").click(function() {
-    $("#deadFloat").hide();
     location.reload();
   });
-}
+};
+
 
 Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
