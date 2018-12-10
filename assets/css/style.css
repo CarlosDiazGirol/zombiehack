@@ -33,6 +33,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  overflow-x: hidden; 
 }
 ol, ul {
   list-style: none; 
@@ -123,7 +124,6 @@ h1 {
   color: red;
   letter-spacing: 0.05em;
   transform: rotate(-5deg);
-  
 }
 
 h2 {
@@ -135,7 +135,6 @@ h2 {
 h2 span {
   text-align: center;
   font-size: 5em;
-
 }
 
 #startFloat {
@@ -173,6 +172,9 @@ h2 span {
   border-radius: 20px;
   border: 5px solid white;
   cursor: pointer;
+}
+#startFloat img {
+  margin-bottom: 40px;
 }
 
 #deadFloat {
@@ -230,9 +232,9 @@ h2 span {
 }
 
 #bloodhand {
-  position: fixed;
-  bottom: -110%;
-  right: 20px;
+  position: absolute;
+  top: 160px;
+  right: -50%;
   z-index: 9999;
   -webkit-transition: all 0.8s linear;
   -moz-transition: all 0.8s linear;
@@ -252,7 +254,7 @@ cursor: url(../img/target.png) 22 22, pointer;
 #deadFloat .contentScore {
 position: absolute;
 top: 240px;
-right: -50%;
+right: -70%;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -260,11 +262,11 @@ font-family: 'Bangers', cursive;
 color: #fff;
 letter-spacing: 0.05em;
 transform: rotate(-5deg);
--webkit-transition: all 0.8s linear;
--moz-transition: all 0.8s linear;
--ms-transition: all 0.8s linear;
--o-transition: all 0.8s linear;
-transition: all 0.8s linear;
+-webkit-transition: all 1s linear;
+-moz-transition: all 1s linear;
+-ms-transition: all 1s linear;
+-o-transition: all 1s linear;
+transition: all 1s linear;
 }
 
 #deadFloat .contentScore p {

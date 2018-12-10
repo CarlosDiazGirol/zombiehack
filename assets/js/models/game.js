@@ -44,7 +44,7 @@ Game.prototype.start = function() {
 
     if (this.drawCounter % INCREASE_LEVEL_TIME === 0) {
       this.max_zombies++;
-      this.zombie_speed += 0.1;
+      this.zombie_speed += 0.15;
     }
 
     this.zombies.forEach(function(zombie){
@@ -111,7 +111,7 @@ Game.prototype.gameOver = function() {
   clearInterval(this.intervalId);
   $("#deadFloat").css({'display': 'flex','top': '0'});
   $("#blood").css({'top': '0'});
-  $("#bloodhand").css({'bottom': '5%'});
+  $("#bloodhand").css({'right': '20px'});
   $(".contentScore").css({'right': '70px'});
   this.showScore();
   $("#restart").click(function() {
