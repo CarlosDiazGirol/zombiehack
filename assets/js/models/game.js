@@ -97,17 +97,26 @@ Game.prototype.moveAll = function(action) {
 Game.prototype.checkGameOver = function() {
 };
 
+
 Game.prototype.gameOver = function() {
   clearInterval(this.intervalId);
   $("#deadFloat").css({'display': 'flex','top': '0'});
   $("#blood").css({'top': '0'});
   $("#bloodhand").css({'bottom': '5%'});
+  $(".contentScore").css({'right': '70px'});
+  this.showScore();
   $("#restart").click(function() {
     location.reload();
   });
 };
 
+Game.prototype.showScore = function() {
+  var yourScoreElement = document.getElementById('score');
+  var finalScore = this.getScore();
+  yourScoreElement.textContent = finalScore;
+};
 
 Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 };
+
