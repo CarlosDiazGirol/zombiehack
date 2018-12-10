@@ -9,6 +9,9 @@ function Game(canvasElement) {
   this.zombies = [];
   this.drawCounter = 0;
   this.score = document.querySelector('#stuff h2 span');
+
+  this.max_zombies = MAX_ZOMBIES;
+  this.zombie_speed = ZOMBIE_SPEED;
 }
 
 Game.prototype.setScore = function(score) {
@@ -29,14 +32,20 @@ Game.prototype.start = function() {
   this.intervalId = setInterval(function() {
     this.clear();
     this.drawCounter++;
+
     if (this.drawCounter % 500 === 0 && this.items.length < MAX_BULLETS) { // draw bullets
-    console.log('entra')
-     this.items.push(new Item(this.ctx))
-    }
-    if (this.drawCounter % 200 === 0 && this.zombies.length < MAX_ZOMBIES) { // draw zombies
-      this.zombies.push(new Zombie(this.ctx))
+      console.log('entra')
+      this.items.push(new Item(this.ctx))
     }
 
+    if (this.drawCounter % 200 === 0 && this.zombies.length < this.max_zombies) { // draw zombies
+      this.zombies.push(new Zombie(this.ctx, this.zombie_speed));
+    }
+
+    if (this.drawCounter % INCREASE_LEVEL_TIME === 0) {
+      this.max_zombies++;
+      this.zombie_speed += 0.1;
+    }
 
     this.zombies.forEach(function(zombie){
       if (zombie.colision(this.player)) {

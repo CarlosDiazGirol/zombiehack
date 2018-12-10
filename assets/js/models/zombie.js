@@ -1,4 +1,4 @@
-function Zombie(ctx) {
+function Zombie(ctx, basespeed) {
   this.ctx = ctx;
 
   this.animation = [];
@@ -19,7 +19,7 @@ function Zombie(ctx) {
   this.w = 65;
   this.h = 70;
 
-  this.speed = ZOMBIE_SPEED + (Math.random() * 0.2);
+  this.speed = basespeed + (Math.random() * 0.2);
   this.angle = 0;
 
   this.x = Math.random() * ((this.ctx.canvas.width -20) - 20) + 20;
